@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== 'production') {
-  require('donenv').config()
+  require('dotenv').config()
 }
 
 const express = require('express');
@@ -12,7 +12,8 @@ const session = require('express-session')
 const initializePassword = require('./passport.config')
 initializePassword(
   passport, 
-  email => users.find(user => user.email = email)
+  email => users.find(user => user.email === email),
+  id => users.find(user => user.id === id)
 )
 
 const users = []
